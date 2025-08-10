@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Munch On Lunch – Menu</title>
+    <style>
+        body {
+            margin: 0;
+            background: #0b0b0b;
+            font: 16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+        }
+
+        .card {
+            max-width: 760px;
+            margin: 48px auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 48px 40px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 800;
+            font-size: 56px;
+            margin: 0 0 8px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-weight: 800;
+            font-size: 22px;
+            margin: 6px 0 28px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 18px;
+        }
+
+        th {
+            text-align: right;
+            font-weight: 700;
+            padding-bottom: 12px;
+        }
+
+        th:first-child {
+            text-align: left;
+        }
+
+        td {
+            padding: 6px 0;
+        }
+
+        .item-line {
+            display: flex;
+            align-items: baseline; /* ⬅ aligns dots with text baseline */
+        }
+
+        .item-line span.fill {
+            flex: 1;
+            border-bottom: 2px dotted #333;
+            margin: 0 6px;
+            opacity: .7;
+        }
+
+
+        .item-line span.name {
+            white-space: nowrap;
+        }
+
+        .item-line span.fill {
+            flex: 1;
+            border-bottom: 2px dotted #333;
+            margin: 0 6px;
+            opacity: .7;
+        }
+
+        td.price {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .bold {
+            font-weight: 800
+        }
+
+        .extra-title {
+            text-align: center;
+            font-weight: 800;
+            font-size: 24px;
+            margin: 36px 0 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>MUNCH ON LUNCH</h1>
+    <div class="section-title">MENU</div>
+
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Nửa</th>
+            <th>Full</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <div class="item-line"><span class="name">Xúc xích</span><span class="fill"></span></div>
+            </td>
+            <td class="price">20k</td>
+            <td class="price">32k</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="item-line"><span class="name">Xúc xích thịt hun khói</span><span class="fill"></span></div>
+            </td>
+            <td class="price">25k</td>
+            <td class="price">40k</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="item-line"><span class="name">Xúc xích thanh cua</span><span class="fill"></span></div>
+            </td>
+            <td class="price">25k</td>
+            <td class="price">40k</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="item-line"><span class="name">Gà xá xíu</span><span class="fill"></span></div>
+            </td>
+            <td class="price">25k</td>
+            <td class="price">40k</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="item-line"><span class="name">Trứng creamy</span><span class="fill"></span></div>
+            </td>
+            <td class="price">15k</td>
+            <td class="price">25k</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="item-line bold"><span class="name">Xúc xích + thịt hun khói + thanh cua</span><span
+                        class="fill"></span></div>
+            </td>
+            <td class="price">30k</td>
+            <td class="price">45k</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="extra-title">EXTRA</div>
+    <table>
+        <tbody>
+        <tr>
+            <td>
+                <div class="item-line"><span class="name">Xúc xích</span><span class="fill"></span></div>
+            </td>
+            <td class="price">+5k</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="item-line"><span class="name">Thịt hun khói</span><span class="fill"></span></div>
+            </td>
+            <td class="price">+8k</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="item-line"><span class="name">Thanh cua</span><span class="fill"></span></div>
+            </td>
+            <td class="price">+8k</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="item-line"><span class="name">Phô mai lát</span><span class="fill"></span></div>
+            </td>
+            <td class="price">+5k</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

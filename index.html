@@ -6,9 +6,6 @@
     <title>Munch On Lunch – Menu</title>
     <meta name="color-scheme" content="light only"/>
     <style>
-        /* =========================
-           TOKENS / BASICS
-        ========================== */
         :root {
             --paper: #ffffff;
             --ink: #111;
@@ -16,15 +13,12 @@
             --shadow: 0 6px 24px rgba(0, 0, 0, .08);
             --radius: 16px;
             --wrap: 860px;
-
             --h1: clamp(32px, 6vw, 56px);
             --h2: clamp(18px, 3.5vw, 22px);
             --body: clamp(15px, 2.6vw, 18px);
-
             --padX: clamp(16px, 4.5vw, 40px);
             --padY: clamp(20px, 6vw, 48px);
-
-            --leader: 2px; /* dotted line thickness */
+            --leader: 2px;
         }
 
         * {
@@ -50,7 +44,7 @@
         }
 
         h1 {
-            margin: 0 0 .2em 0;
+            margin: 0 0 .5em;
             font-weight: 800;
             font-size: var(--h1);
             text-align: center;
@@ -66,12 +60,9 @@
             letter-spacing: .2px;
         }
 
-        /* =========================
-           GENERIC LEADER LINE PIECES
-        ========================== */
         .item-line {
             display: flex;
-            align-items: baseline; /* dots meet text at the foot */
+            align-items: baseline;
             gap: .5rem;
             min-width: 0;
         }
@@ -86,16 +77,13 @@
             flex: 1 1 auto;
             border-bottom: var(--leader) dotted var(--muted);
             opacity: .75;
-            translate: 0 .06em; /* tiny baseline nudge */
+            translate: 0 .06em;
         }
 
         .bold .name {
             font-weight: 800
         }
 
-        /* =========================
-           MENU TABLE (3 columns)
-        ========================== */
         .menu-table {
             width: 100%;
             border-collapse: separate;
@@ -119,7 +107,6 @@
             vertical-align: baseline;
         }
 
-        /* Prices live in their own cells for MENU table */
         .menu-price {
             text-align: right;
             white-space: nowrap;
@@ -127,10 +114,6 @@
             min-width: 3.5ch;
         }
 
-        /* =========================
-           EXTRA TABLE (1 column)
-           (the price is inline with the dots)
-        ========================== */
         .extra-table {
             width: 100%;
             border-collapse: separate;
@@ -143,7 +126,6 @@
             vertical-align: baseline;
         }
 
-        /* price inside the line */
         .price-inline {
             flex: 0 0 auto;
             text-align: right;
@@ -152,9 +134,21 @@
             min-width: 3.5ch;
         }
 
-        /* =========================
-           RESPONSIVE / PRINT
-        ========================== */
+        /* Notes section */
+        .notes {
+            margin-top: 2rem;
+            font-size: var(--body);
+        }
+
+        .notes ul {
+            padding-left: 1.2rem;
+            margin: 0;
+        }
+
+        .notes li {
+            margin-bottom: .6rem;
+        }
+
         @media (max-width: 560px) {
             .sheet {
                 padding: clamp(16px, 5vw, 24px)
@@ -195,7 +189,7 @@
 <main class="sheet" role="main">
     <h1>MUNCH ON LUNCH</h1>
 
-    <!-- ================= MENU ================= -->
+    <!-- Menu -->
     <div class="section-title">MENU</div>
     <table class="menu-table" aria-label="Menu chính">
         <thead>
@@ -208,17 +202,20 @@
         <tbody id="menu-body"></tbody>
     </table>
 
-    <!-- ================= EXTRA ================= -->
+    <!-- Extra -->
     <div class="section-title" style="margin-top:1.8rem;">EXTRA</div>
     <table class="extra-table" aria-label="Topping thêm">
         <tbody id="extra-body"></tbody>
     </table>
+
+    <!-- Notes -->
+    <div class="section-title" style="margin-top:2rem;">NOTE</div>
+    <div class="notes">
+        <ul id="notes-list"></ul>
+    </div>
 </main>
 
 <script>
-    /* =========================
-       DATA
-    ========================== */
     const menuItems = [
         {name: "Xúc xích", half: "20k", full: "32k"},
         {name: "Xúc xích thịt hun khói", half: "25k", full: "40k"},
@@ -235,13 +232,13 @@
         {name: "Phô mai lát", price: "+5k"}
     ];
 
-    /* =========================
-       RENDERERS
-    ========================== */
+    const notes = [
+        "Với các yêu cầu đặc biệt (nhiều cay, thêm xúc xích, thêm phô mai,...) chúng mình xin phép chỉ bán bánh *FULL*",
+        "Để đặt bánh nhanh nhất, các bạn hãy inbox Instagram hoặc Page Facebook của shop với cú pháp: Số lượng + Vị bánh + Nửa / Full kèm Địa chỉ và Số điện thoại nhận hàng nha"
+    ];
+
     function createMenuRow(item) {
         const tr = document.createElement("tr");
-
-        // Name + fill (dots) in first cell
         const tdName = document.createElement("td");
         const line = document.createElement("div");
         line.className = "item-line" + (item.bold ? " bold" : "");
@@ -252,52 +249,48 @@
         fill.className = "fill";
         line.append(name, fill);
         tdName.appendChild(line);
-
-        // Prices in their own cells (keeps MENU layout crisp)
         const tdHalf = document.createElement("td");
         tdHalf.className = "menu-price";
         tdHalf.textContent = item.half;
-
         const tdFull = document.createElement("td");
         tdFull.className = "menu-price";
         tdFull.textContent = item.full;
-
         tr.append(tdName, tdHalf, tdFull);
         return tr;
     }
 
     function createExtraRow(extra) {
         const tr = document.createElement("tr");
-        const td = document.createElement("td"); // one full-width cell
-
-        // Put name + dots + price all in one baseline-aligned line
+        const td = document.createElement("td");
         const line = document.createElement("div");
         line.className = "item-line";
-
         const name = document.createElement("span");
         name.className = "name";
         name.textContent = extra.name;
-
         const fill = document.createElement("span");
         fill.className = "fill";
-
         const price = document.createElement("span");
         price.className = "price-inline";
         price.textContent = extra.price;
-
         line.append(name, fill, price);
         td.appendChild(line);
         tr.appendChild(td);
         return tr;
     }
 
-    /* =========================
-       INIT
-    ========================== */
+    function createNoteItem(note) {
+        const li = document.createElement("li");
+        li.innerHTML = note.replace(/\*(.*?)\*/g, "<strong>$1</strong>");
+        return li;
+    }
+
     const menuBody = document.getElementById("menu-body");
     const extraBody = document.getElementById("extra-body");
+    const notesList = document.getElementById("notes-list");
+
     menuItems.forEach(i => menuBody.appendChild(createMenuRow(i)));
     extras.forEach(e => extraBody.appendChild(createExtraRow(e)));
+    notes.forEach(n => notesList.appendChild(createNoteItem(n)));
 </script>
 </body>
 </html>

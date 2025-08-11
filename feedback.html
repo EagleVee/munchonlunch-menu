@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+    <title>Munch On Lunch – Feedbacks</title>
+    <link rel="icon" href="images/logo.png">
+    <meta name="color-scheme" content="light only"/>
+    <meta property="og:title" content="Munch On Lunch – Menu">
+    <meta property="og:description" content="Xem menu và đặt bánh ngon từ Munch On Lunch!">
+    <meta property="og:image" content="https://menu.eaglevee.com/images/logo.png">
+    <meta property="og:url" content="https://menu.eaglevee.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Munch On Lunch – Menu">
+    <meta name="twitter:description" content="Xem menu và đặt bánh ngon từ Munch On Lunch!">
+    <meta name="twitter:image" content="https://menu.eaglevee.com/images/logo.png">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="container row">
+        <h1 class="logo">MUNCH ON LUNCH</h1>
+        <nav>
+            <a href="index.html">Menu</a>
+            <a href="feedback.html" aria-current="page">Feedbacks</a>
+        </nav>
+    </div>
+</header>
+
+<main class="sheet" role="main">
+    <div class="section-title">FEEDBACKS</div>
+    <div id="stats" class="row" style="margin-bottom:12px;"></div>
+    <div id="feedback-list" class="cards" aria-live="polite"></div>
+</main>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox__backdrop" aria-label="Đóng"></button>
+    <img id="lightbox-img" alt="">
+</div>
+
+<script>
+    // Lightbox (same as index)
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src, alt = '') {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImg.src = '';
+        document.body.style.overflow = '';
+    }
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target.classList.contains('lightbox__backdrop')) closeLightbox();
+    });
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Stars helper
+    function stars(n) {
+        return '★★★★★☆☆☆☆☆'.slice(5 - Math.round(n), 10 - Math.round(n));
+    }
+
+    // Render a feedback card
+    function feedbackCard(item) {
+        const el = document.createElement('article');
+        el.className = 'card';
+
+        const header = document.createElement('div');
+        header.className = 'card-header row';
+        const name = document.createElement('strong');
+        name.textContent = item.name || 'Ẩn danh';
+        const right = document.createElement('div');
+        right.className = 'muted';
+        if (item.rating) right.textContent = `${(item.rating).toFixed ? item.rating.toFixed(1) : item.rating}/5 ${stars(item.rating)}`;
+        header.append(name, right);
+
+        const body = document.createElement('div');
+        body.className = 'card-body';
+        if (item.content) {
+            const p = document.createElement('p');
+            p.textContent = item.content;
+            body.appendChild(p);
+        }
+
+        if (item.images && item.images.length) {
+            const grid = document.createElement('div');
+            grid.className = 'gallery';
+            item.images.forEach((src) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'thumb';
+                const img = document.createElement('img');
+                img.loading = 'lazy';
+                img.src = src;
+                img.alt = item.name || 'Feedback image';
+                btn.appendChild(img);
+                btn.addEventListener('click', () => openLightbox(src, img.alt));
+                grid.appendChild(btn);
+            });
+            body.appendChild(grid);
+        }
+
+        el.append(header, body);
+        return el;
+    }
+
+    async function init() {
+        const res = await fetch('data/feedbacks.json');
+        const items = await res.json();
+
+        const stats = document.getElementById('stats');
+        const list = document.getElementById('feedback-list');
+
+        const avg = items.length ? (items.reduce((s, i) => s + (i.rating || 0), 0) / items.length) : 0;
+        stats.innerHTML = `<div><strong>${items.length}</strong> đánh giá</div><div>${avg.toFixed(1)}/5 ${stars(avg)}</div>`;
+
+        items.forEach(i => list.appendChild(feedbackCard(i)));
+    }
+
+    init().catch(console.error);
+</script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+:root {
+    --paper: #ffffff;
+    --ink: #111;
+    --muted: #4a4a4a;
+    --shadow: 0 6px 24px rgba(0, 0, 0, .08);
+    --radius: 16px;
+    --wrap: 860px;
+    --h1: clamp(28px, 4.8vw, 40px);
+    --h2: clamp(18px, 3.5vw, 22px);
+    --body: clamp(15px, 2.6vw, 18px);
+    --padX: clamp(16px, 4.5vw, 40px);
+    --padY: clamp(20px, 6vw, 48px);
+    --leader: 2px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f4f4f4;
+    color: var(--ink);
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.container {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: 0 var(--padX);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.site-header .logo {
+    font-size: 20px;
+    margin: 10px 0;
+    letter-spacing: .4px;
+}
+
+nav a {
+    margin-left: 12px;
+    color: #111;
+    text-decoration: none;
+}
+
+nav a[aria-current="page"] {
+    font-weight: 700;
+}
+
+.sheet {
+    max-width: var(--wrap);
+    margin: max(10px, env(safe-area-inset-top)) auto;
+    background: var(--paper);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: var(--padY) var(--padX);
+}
+
+.section-title {
+    text-align: center;
+    font-weight: 800;
+    font-size: var(--h2);
+    margin: .2rem 0 1.4rem;
+    letter-spacing: .2px;
+}
+
+/* Menu table */
+.menu-table, .extra-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: var(--body);
+    table-layout: fixed;
+}
+
+:root {
+    --colPrice: 6.5ch;
+}
+
+/* tweak if needed */
+.col-name {
+    width: auto;
+}
+
+.col-half, .col-full {
+    width: var(--colPrice);
+}
+
+.menu-table thead th {
+    font-weight: 700;
+    text-align: center;
+    padding: 0 0 .7rem 0;
+    white-space: nowrap;
+}
+
+.menu-table thead th:first-child {
+    text-align: left;
+}
+
+.menu-table tbody td, .extra-table tbody td {
+    padding: .45rem 0;
+    vertical-align: baseline;
+}
+
+.item-line {
+    display: flex;
+    align-items: baseline;
+    gap: .5rem;
+    min-width: 0;
+}
+
+.name {
+    flex: 0 1 auto;
+    min-width: 0;
+    word-break: break-word;
+}
+
+.fill {
+    flex: 1 1 auto;
+    border-bottom: var(--leader) dotted var(--muted);
+    opacity: .75;
+    translate: 0 .06em;
+}
+
+.bold .name {
+    font-weight: 800;
+}
+
+
+/* center price cells (you already have this, kept here for clarity) */
+.menu-price {
+    text-align: center;
+    white-space: nowrap;
+    padding-left: 0;
+}
+
+.price-inline {
+    flex: 0 0 auto;
+    text-align: center;
+    white-space: nowrap;
+    padding-left: .5rem;
+    min-width: 3.5ch;
+}
+
+.see-images {
+    margin-top: 6px;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.see-images[aria-expanded="true"] {
+    background: #e5f0ff;
+    border-color: #c7dcff;
+}
+
+/* Image gallery under a menu item */
+.gallery-row td {
+    padding-top: .2rem;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+    gap: 10px;
+}
+
+.thumb {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.gallery img, .cards .gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+/* Notes */
+.notes {
+    margin-top: 2rem;
+    font-size: var(--body);
+}
+
+.notes ul {
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+.notes li {
+    margin-bottom: .6rem;
+}
+
+/* Cards (feedbacks) */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+}
+
+.card {
+    border: 1px solid #eee;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.card-body {
+    padding: 12px;
+}
+
+.card-body p {
+    margin: 0 0 8px;
+}
+
+.muted {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    place-items: center;
+}
+
+.lightbox.open {
+    display: grid;
+}
+
+.lightbox__backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6);
+    border: 0;
+    padding: 0;
+    cursor: zoom-out;
+}
+
+#lightbox-img {
+    position: relative;
+    max-width: 92vw;
+    max-height: 88vh;
+    border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .35);
+}
+
+@media (max-width: 560px) {
+    .sheet {
+        padding: clamp(16px, 5vw, 24px);
+    }
+
+    .menu-table thead th {
+        padding-bottom: .5rem;
+    }
+
+    .menu-table tbody td, .extra-table tbody td {
+        padding: .35rem 0;
+    }
+
+    .menu-price {
+        min-width: 3ch;
+    }
+
+    :root {
+        --leader: 1.5px;
+    }
+}
+
+@media print {
+    body {
+        background: #fff;
+    }
+
+    .site-header, .lightbox {
+        display: none !important;
+    }
+
+    .sheet {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+    }
+}
+
+/* Disclosure caret before item name */
+.disclose {
+    display: flex;
+    align-items: baseline;
+    gap: .4rem;
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.disclose:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+/* Right-pointing caret that rotates down when open */
+.disclose .caret {
+    width: 0;
+    height: 0;
+    border-left: 6px solid currentColor; /* triangle pointing right */
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    transition: transform .18s ease;
+    margin-top: .2em;
+}
+
+.disclose[aria-expanded="true"] .caret {
+    transform: rotate(90deg);
+}
+
+/* points down */
+

@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Linh N.",
+    "rating": 5,
+    "content": "Bánh ngon, vỏ giòn, giao nhanh!",
+    "images": [
+      "images/feedback-linh-1.jpg",
+      "images/feedback-linh-2.jpg"
+    ],
+    "date": "2025-08-01"
+  },
+  {
+    "name": "Quang P.",
+    "rating": 4,
+    "content": "Nhân nhiều, sẽ ủng hộ tiếp.",
+    "images": [
+      "images/feedback-quang-1.jpg"
+    ],
+    "date": "2025-08-05"
+  },
+  {
+    "name": "Ẩn danh",
+    "rating": 5,
+    "content": "Combo ba loại ăn đã lắm!",
+    "images": [],
+    "date": "2025-08-06"
+  }
+]

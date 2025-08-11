@@ -36,7 +36,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 8px;
 }
 
 .site-header {
@@ -351,4 +351,59 @@ nav a[aria-current="page"] {
 }
 
 /* points down */
+
+/* Nav layout with socials */
+.mainnav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.mainnav .links a {
+    margin-left: 12px;
+}
+
+.catch {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    text-decoration: none;
+}
+
+.btn-icon:hover {
+    background: #f3f4f6;
+}
+
+.btn-icon .icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+/* Small screens: wrap phrase + icons nicely */
+@media (max-width: 560px) {
+    .catch {
+        flex-basis: 100%;
+        order: 2;
+    }
+
+    .socials {
+        order: 3;
+    }
+}
+
 

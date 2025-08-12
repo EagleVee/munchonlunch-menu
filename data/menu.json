@@ -26,13 +26,17 @@
       "half": "25k",
       "full": "40k",
       "images": [
+        "images/ga_xa_xiu_2.jpeg",
         "images/ga_xa_xiu_1.jpg"
       ]
     },
     {
       "name": "Trứng creamy",
       "half": "15k",
-      "full": "25k"
+      "full": "25k",
+      "images": [
+        "images/trung_creamy_1.jpeg"
+      ]
     },
     {
       "name": "Xúc xích + thịt hun khói + thanh cua",

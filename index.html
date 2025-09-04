@@ -169,6 +169,13 @@
 
         tdName.appendChild(line);
 
+        if (item.description) {
+            const desc = document.createElement('div');
+            desc.className = 'item-desc';
+            desc.textContent = item.description;
+            tdName.appendChild(desc);
+        }
+
         const tdHalf = document.createElement('td');
         tdHalf.className = 'menu-price';
         tdHalf.textContent = item.half;

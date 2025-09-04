@@ -2,6 +2,7 @@
   "menu": [
     {
       "name": "Xúc xích",
+      "description": "~302 calo",
       "half": "20k",
       "full": "32k",
       "images": [
@@ -10,6 +11,7 @@
     },
     {
       "name": "Xúc xích thịt hun khói",
+      "description": "~366 calo",
       "half": "25k",
       "full": "40k",
       "images": [
@@ -18,11 +20,13 @@
     },
     {
       "name": "Xúc xích thanh cua",
+      "description": "~349 calo",
       "half": "25k",
       "full": "40k"
     },
     {
       "name": "Gà xá xíu",
+      "description": "~464 calo, má đùi gà xá xíu mềm mọng~",
       "half": "25k",
       "full": "40k",
       "images": [
@@ -31,7 +35,15 @@
       ]
     },
     {
+      "name": "Gà xá xíu healthy",
+      "description": "~398 calo, ức gà xá xíu juicy, bánh gối nguyên cám, nhiều rau hơn, sốt ít calo",
+      "half": "30k",
+      "full": "50k",
+      "images": []
+    },
+    {
       "name": "Trứng creamy",
+      "description": "~280 calo, X2 trứng với kết cấu creamy mềm mịn",
       "half": "15k",
       "full": "25k",
       "images": [
@@ -40,6 +52,7 @@
     },
     {
       "name": "Xúc xích + thịt hun khói + thanh cua",
+      "description": "~413 calo, combo 3 loại topping ăn đã lắm luôn",
       "half": "30k",
       "full": "45k",
       "bold": true,
@@ -77,8 +90,10 @@
     }
   ],
   "notes": [
+    "Bánh sandwich đã bao gồm rau xà lách, cà chua, bắp cải tím, trứng creamy mềm mịn, hãy nói với chúng mình nếu bạn không ăn được món nào nhé",
+    "Calo được tính toán với một bánh *FULL*, dựa trên nguyên liệu chính, không bao gồm rau và các topping thêm",
     "Với các yêu cầu đặc biệt (nhiều cay, thêm xúc xích, thêm phô mai,...) chúng mình xin phép chỉ bán bánh *FULL*",
-    "Để đặt bánh nhanh nhất, các bạn hãy inbox Instagram hoặc Page Facebook của shop với cú pháp: [Số lượng] + [Vị bánh] + [Nửa / Full] kèm [Địa chỉ] và [Số điện thoại] nhận hàng nha",
-    "Khách đặt bánh ăn sáng đặt trước 8h tối hôm trước sẽ giúp chúng mình chuẩn bị nguyên liệu được tốt nhất, vì chúng mình không trữ đồ đông lạnh mà chỉ mua vừa đủ để đảm bảo thực phẩm được tươi nhất"
+    "Bánh được làm mới hoàn toàn mỗi ngày, không trữ đông lạnh nên các các bạn hãy đặt bánh ăn sáng trước 8h tối hôm trước thì chúng mình sẽ chuẩn bị nguyên liệu được tốt nhất nha",
+    "Để đặt bánh nhanh nhất, các bạn hãy inbox Instagram hoặc Page Facebook của shop với cú pháp: [Số lượng] + [Vị bánh] + [Nửa / Full] kèm [Địa chỉ] và [Số điện thoại] nhận hàng nha"
   ]
 }

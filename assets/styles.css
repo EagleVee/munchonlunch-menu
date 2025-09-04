@@ -402,6 +402,12 @@ nav a[aria-current="page"] {
     display: block;
 }
 
+.item-desc {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.2rem;
+}
+
 /* Small screens: wrap phrase + icons nicely */
 @media (max-width: 560px) {
     .catch {

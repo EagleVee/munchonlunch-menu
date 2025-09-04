@@ -72,14 +72,22 @@
         <tbody id="menu-body"></tbody>
     </table>
 
-    <!-- Extra -->
-    <div class="section-title" style="margin-top:1.8rem;">EXTRA</div>
+    <div class="section-title" style="margin-top:1.8rem;">ĐỒ THÊM</div>
     <table class="extra-table" aria-label="Topping thêm">
         <colgroup>
             <col class="col-name">
             <col class="col-full">
         </colgroup>
         <tbody id="extra-body"></tbody>
+    </table>
+
+    <div class="section-title" style="margin-top:1.8rem;">ĐỒ UỐNG</div>
+    <table class="extra-table" aria-label="Đồ uống">
+        <colgroup>
+            <col class="col-name">
+            <col class="col-full">
+        </colgroup>
+        <tbody id="beverage-body"></tbody>
     </table>
 
     <!-- Notes -->
@@ -237,6 +245,28 @@
         return tr;
     }
 
+    function createBeverageRow(beverage) {
+        const tr = document.createElement("tr");
+
+        const tdName = document.createElement("td");
+        const line = document.createElement("div");
+        line.className = "item-line";
+        const name = document.createElement("span");
+        name.className = "name";
+        name.textContent = beverage.name;
+        const fill = document.createElement("span");
+        fill.className = "fill";
+        line.append(name, fill);
+        tdName.appendChild(line);
+
+        const tdFull = document.createElement("td");
+        tdFull.className = "menu-price";
+        tdFull.textContent = beverage.price;
+
+        tr.append(tdName, tdFull);
+        return tr;
+    }
+
     function createNoteItem(note) {
         const li = document.createElement('li');
         li.innerHTML = note.replace(/\*(.*?)\*/g, "<strong>$1</strong>");
@@ -249,6 +279,7 @@
         const data = await res.json();
         const menuBody = document.getElementById('menu-body');
         const extraBody = document.getElementById('extra-body');
+        const beverageBody = document.getElementById('beverage-body');
         const notesList = document.getElementById('notes-list');
 
         data.menu.forEach((item, idx) => {
@@ -259,6 +290,7 @@
         });
 
         data.extras.forEach(extra => extraBody.appendChild(createExtraRow(extra)));
+        data.beverages.forEach(beverage => beverageBody.appendChild(createBeverageRow(beverage)));
         data.notes.forEach(n => notesList.appendChild(createNoteItem(n)));
     }
 

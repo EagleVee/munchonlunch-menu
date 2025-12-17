@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <title>Update Menu – Munch On Lunch</title>
+    <link rel="icon" href="images/logo.png" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <style>
+      .admin-container {
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 0 var(--padX);
+      }
+
+      .admin-header {
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 2rem;
+      }
+
+      .admin-header h1 {
+        margin: 0 0 0.5rem;
+        font-size: var(--h1);
+      }
+
+      .admin-header p {
+        margin: 0;
+        color: var(--muted);
+        font-size: var(--description);
+      }
+
+      .section-card {
+        background: #fff;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-card h2 {
+        margin: 0 0 1rem;
+        font-size: var(--h2);
+        border-bottom: 2px solid #eee;
+        padding-bottom: 0.5rem;
+      }
+
+      .item-editor {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .item-editor:last-child {
+        margin-bottom: 0;
+      }
+
+      .form-group {
+        margin-bottom: 0.75rem;
+      }
+
+      .form-group:last-child {
+        margin-bottom: 0;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+        color: #374151;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 0.9375rem;
+        font-family: inherit;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 60px;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .images-input {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .image-input-row {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .image-input-row input {
+        flex: 1;
+      }
+
+      .btn {
+        padding: 0.625rem 1.25rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+      }
+
+      .btn-primary {
+        background: #2563eb;
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background: #1d4ed8;
+      }
+
+      .btn-secondary {
+        background: #6b7280;
+        color: #fff;
+      }
+
+      .btn-secondary:hover {
+        background: #4b5563;
+      }
+
+      .btn-danger {
+        background: #dc2626;
+        color: #fff;
+      }
+
+      .btn-danger:hover {
+        background: #b91c1c;
+      }
+
+      .btn-success {
+        background: #16a34a;
+        color: #fff;
+      }
+
+      .btn-success:hover {
+        background: #15803d;
+      }
+
+      .btn-small {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .actions-bar {
+        position: sticky;
+        bottom: 0;
+        background: #fff;
+        border-top: 2px solid #eee;
+        padding: 1rem;
+        margin-top: 2rem;
+        border-radius: var(--radius);
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .actions-bar .btn-group {
+        justify-content: center;
+      }
+
+      .github-section {
+        background: #fef3c7;
+        border: 1px solid #fbbf24;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+
+      .github-section h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+        color: #92400e;
+      }
+
+      .github-section p {
+        margin: 0 0 0.75rem;
+        font-size: 0.875rem;
+        color: #78350f;
+      }
+
+      .github-section .form-group {
+        margin-bottom: 0.75rem;
+      }
+
+      .warning {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+        border-radius: 6px;
+        padding: 0.75rem;
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        color: #991b1b;
+      }
+
+      .status-message {
+        padding: 0.75rem;
+        border-radius: 6px;
+        margin-top: 1rem;
+        font-size: 0.875rem;
+        display: none;
+      }
+
+      .status-message.show {
+        display: block;
+      }
+
+      .status-message.success {
+        background: #d1fae5;
+        color: #065f46;
+        border: 1px solid #6ee7b7;
+      }
+
+      .status-message.error {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
+
+      .add-item-btn {
+        margin-top: 0.5rem;
+      }
+
+      .note-item {
+        display: flex;
+        gap: 0.5rem;
+        align-items: flex-start;
+      }
+
+      .note-item textarea {
+        flex: 1;
+      }
+
+      .image-upload-row {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .image-upload-row input[type="text"] {
+        flex: 1;
+      }
+
+      .image-preview {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 1px solid #d1d5db;
+        display: block;
+      }
+
+      .image-upload-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .image-preview-container {
+        position: relative;
+        display: inline-block;
+      }
+
+      .image-preview-container img {
+        display: block;
+      }
+
+      .image-preview-placeholder {
+        width: 60px;
+        height: 60px;
+        background: #f3f4f6;
+        border: 2px dashed #d1d5db;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #9ca3af;
+        font-size: 0.75rem;
+        text-align: center;
+      }
+
+      .file-input-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .file-input-wrapper input[type="file"] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .file-input-label {
+        display: inline-block;
+        padding: 0.5rem 0.75rem;
+        background: #f3f4f6;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+
+      .file-input-label:hover {
+        background: #e5e7eb;
+      }
+
+      .image-name-input {
+        flex: 0 0 150px;
+        min-width: 120px;
+      }
+
+      .upload-status {
+        font-size: 0.75rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+      }
+
+      .upload-status.uploading {
+        color: #2563eb;
+      }
+
+      .upload-status.success {
+        color: #16a34a;
+      }
+
+      .upload-status.error {
+        color: #dc2626;
+      }
+
+      @media (max-width: 640px) {
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="admin-container">
+      <div class="admin-header">
+        <h1>📝 Update Menu</h1>
+        <p>Chỉnh sửa menu và lưu vào menu.json</p>
+      </div>
+
+      <div id="editor-container"></div>
+
+      <div class="actions-bar">
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="loadMenu()">
+            🔄 Load Menu
+          </button>
+          <button class="btn btn-success" onclick="saveMenu()">
+            💾 Download JSON
+          </button>
+          <button class="btn btn-secondary" onclick="previewJSON()">
+            👁️ Preview JSON
+          </button>
+        </div>
+      </div>
+
+      <div id="status-message" class="status-message"></div>
+    </div>
+
+    <script>
+      let menuData = {
+        menu: [],
+        extras: [],
+        beverages: [],
+        notes: [],
+      };
+
+      // Load menu from JSON file
+      async function loadMenu() {
+        try {
+          const res = await fetch("data/menu.json");
+          menuData = await res.json();
+          renderEditor();
+          showStatus("Menu đã được load thành công!", "success");
+        } catch (error) {
+          showStatus("Lỗi khi load menu: " + error.message, "error");
+        }
+      }
+
+      // Render the editor UI
+      function renderEditor() {
+        const container = document.getElementById("editor-container");
+        container.innerHTML = `
+          ${renderMenuSection()}
+          ${renderExtrasSection()}
+          ${renderBeveragesSection()}
+          ${renderNotesSection()}
+          ${renderGitHubSection()}
+        `;
+      }
+
+      function renderMenuSection() {
+        return `
+          <div class="section-card">
+            <h2>🍽️ Menu</h2>
+            <div id="menu-items">
+              ${menuData.menu
+                .map((item, idx) => renderMenuItem(item, idx))
+                .join("")}
+            </div>
+            <button class="btn btn-secondary btn-small add-item-btn" onclick="addMenuItem()">
+              + Thêm món
+            </button>
+          </div>
+        `;
+      }
+
+      function renderMenuItem(item, idx) {
+        const images = (item.images || [])
+          .map((img, i) => {
+            const previewUrl = img.startsWith("http")
+              ? img
+              : img
+              ? `/${img}`
+              : "";
+            const imageName = img
+              ? img.replace("images/", "").replace(/\.[^/.]+$/, "")
+              : "";
+            return `
+            <div class="image-upload-wrapper" id="image-wrapper-${idx}-${i}">
+              <div class="image-upload-row">
+                <div class="image-preview-container" id="preview-container-${idx}-${i}">
+                  ${
+                    previewUrl
+                      ? `<img src="${previewUrl}" alt="Preview" class="image-preview" onerror="this.style.display='none'">`
+                      : `<div class="image-preview-placeholder">Chưa có ảnh</div>`
+                  }
+                </div>
+                <input type="text" 
+                  value="${escapeHtml(imageName)}" 
+                  placeholder="Tên file (không cần .jpg)"
+                  class="image-name-input"
+                  id="image-name-${idx}-${i}"
+                  data-menu-idx="${idx}"
+                  data-image-idx="${i}">
+                <input type="text" 
+                  value="${escapeHtml(img)}" 
+                  placeholder="images/example.jpg"
+                  class="image-path-input"
+                  data-menu-idx="${idx}"
+                  data-image-idx="${i}"
+                  onchange="updateMenuItemAndPreview(${idx}, ${i}, this.value)"
+                  style="flex: 1;">
+                <div class="file-input-wrapper">
+                  <input type="file" 
+                    id="file-input-${idx}-${i}"
+                    accept="image/*" 
+                    class="file-input"
+                    data-menu-idx="${idx}"
+                    data-image-idx="${i}"
+                    onchange="handleImageSelect(${idx}, ${i}, this)">
+                  <label for="file-input-${idx}-${i}" class="file-input-label">
+                    📁 Chọn ảnh
+                  </label>
+                </div>
+                <button class="btn btn-primary btn-small" onclick="uploadSelectedImage(${idx}, ${i})" id="upload-btn-${idx}-${i}" style="display: none;">
+                  📤 Upload
+                </button>
+                <button class="btn btn-danger btn-small" onclick="removeImage(${idx}, ${i})">X</button>
+              </div>
+              <div class="upload-status" id="upload-status-${idx}-${i}"></div>
+            </div>
+          `;
+          })
+          .join("");
+
+        return `
+          <div class="item-editor">
+            <div class="form-group">
+              <label>Tên món</label>
+              <input type="text" value="${escapeHtml(item.name || "")}" 
+                onchange="updateMenuItem(${idx}, 'name', null, this.value)">
+            </div>
+            <div class="form-group">
+              <label>Mô tả (tùy chọn)</label>
+              <textarea onchange="updateMenuItem(${idx}, 'description', null, this.value)">${escapeHtml(
+          item.description || ""
+        )}</textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Giá Nửa</label>
+                <input type="text" value="${escapeHtml(item.half || "")}" 
+                  placeholder="28k"
+                  onchange="updateMenuItem(${idx}, 'half', null, this.value)">
+              </div>
+              <div class="form-group">
+                <label>Giá Full</label>
+                <input type="text" value="${escapeHtml(item.full || "")}" 
+                  placeholder="45k"
+                  onchange="updateMenuItem(${idx}, 'full', null, this.value)">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Ảnh (tùy chọn)</label>
+              <div class="images-input">
+                ${images}
+                <button class="btn btn-secondary btn-small" onclick="addImage(${idx})">
+                  + Thêm ảnh
+                </button>
+              </div>
+            </div>
+            <button class="btn btn-danger btn-small" onclick="removeMenuItem(${idx})">
+              🗑️ Xóa món
+            </button>
+          </div>
+        `;
+      }
+
+      function renderExtrasSection() {
+        return `
+          <div class="section-card">
+            <h2>➕ Đồ Thêm</h2>
+            <div id="extras-items">
+              ${menuData.extras
+                .map((item, idx) => renderExtraItem(item, idx))
+                .join("")}
+            </div>
+            <button class="btn btn-secondary btn-small add-item-btn" onclick="addExtraItem()">
+              + Thêm đồ thêm
+            </button>
+          </div>
+        `;
+      }
+
+      function renderExtraItem(item, idx) {
+        return `
+          <div class="item-editor">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Tên</label>
+                <input type="text" value="${escapeHtml(item.name || "")}" 
+                  onchange="updateExtraItem(${idx}, 'name', this.value)">
+              </div>
+              <div class="form-group">
+                <label>Giá</label>
+                <input type="text" value="${escapeHtml(item.price || "")}" 
+                  placeholder="+10k"
+                  onchange="updateExtraItem(${idx}, 'price', this.value)">
+              </div>
+            </div>
+            <button class="btn btn-danger btn-small" onclick="removeExtraItem(${idx})">
+              🗑️ Xóa
+            </button>
+          </div>
+        `;
+      }
+
+      function renderBeveragesSection() {
+        return `
+          <div class="section-card">
+            <h2>🥤 Đồ Uống</h2>
+            <div id="beverages-items">
+              ${menuData.beverages
+                .map((item, idx) => renderBeverageItem(item, idx))
+                .join("")}
+            </div>
+            <button class="btn btn-secondary btn-small add-item-btn" onclick="addBeverageItem()">
+              + Thêm đồ uống
+            </button>
+          </div>
+        `;
+      }
+
+      function renderBeverageItem(item, idx) {
+        return `
+          <div class="item-editor">
+            <div class="form-group">
+              <label>Tên</label>
+              <input type="text" value="${escapeHtml(item.name || "")}" 
+                onchange="updateBeverageItem(${idx}, 'name', this.value)">
+            </div>
+            <div class="form-group">
+              <label>Mô tả (tùy chọn)</label>
+              <textarea onchange="updateBeverageItem(${idx}, 'description', this.value)">${escapeHtml(
+          item.description || ""
+        )}</textarea>
+            </div>
+            <div class="form-group">
+              <label>Giá</label>
+              <input type="text" value="${escapeHtml(item.price || "")}" 
+                placeholder="15k"
+                onchange="updateBeverageItem(${idx}, 'price', this.value)">
+            </div>
+            <button class="btn btn-danger btn-small" onclick="removeBeverageItem(${idx})">
+              🗑️ Xóa
+            </button>
+          </div>
+        `;
+      }
+
+      function renderNotesSection() {
+        return `
+          <div class="section-card">
+            <h2>📋 Notes</h2>
+            <div id="notes-items">
+              ${menuData.notes
+                .map((note, idx) => renderNoteItem(note, idx))
+                .join("")}
+            </div>
+            <button class="btn btn-secondary btn-small add-item-btn" onclick="addNoteItem()">
+              + Thêm note
+            </button>
+          </div>
+        `;
+      }
+
+      function renderNoteItem(note, idx) {
+        return `
+          <div class="item-editor">
+            <div class="note-item">
+              <textarea onchange="updateNoteItem(${idx}, this.value)">${escapeHtml(
+          note
+        )}</textarea>
+              <button class="btn btn-danger btn-small" onclick="removeNoteItem(${idx})">
+                🗑️
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderGitHubSection() {
+        return `
+          <div class="section-card">
+            <h2>🚀 Commit lên GitHub</h2>
+            <div class="github-section">
+              <h3>⚠️ Cảnh báo bảo mật</h3>
+              <p>
+                Để commit lên GitHub, bạn cần Personal Access Token. 
+                <strong>KHÔNG</strong> lưu token trong code client-side vì sẽ bị lộ.
+                Token chỉ được dùng một lần và không được lưu lại.
+              </p>
+              <div class="form-group">
+                <label>GitHub Personal Access Token</label>
+                <input type="password" id="github-token" 
+                  placeholder="ghp_xxxxxxxxxxxxx">
+                <small style="color: #6b7280; font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                  Tạo token tại: Settings → Developer settings → Personal access tokens
+                </small>
+              </div>
+              <div class="form-group">
+                <label>Repository</label>
+                <input type="text" id="github-repo" 
+                  value="EagleVee/munchonlunch-menu"
+                  placeholder="username/repo">
+              </div>
+              <div class="form-group">
+                <label>Branch (mặc định: master)</label>
+                <input type="text" id="github-branch" value="master" 
+                  placeholder="master">
+              </div>
+              <div class="form-group">
+                <label>Commit message</label>
+                <input type="text" id="github-message" 
+                  value="Update menu" 
+                  placeholder="Update menu">
+              </div>
+              <div class="warning">
+                <strong>⚠️ Lưu ý:</strong> Token sẽ được gửi qua mạng. 
+                Chỉ dùng token với quyền hạn tối thiểu (chỉ repo scope).
+                Sau khi commit, hãy xóa token này khỏi GitHub nếu không cần thiết.
+              </div>
+              <button class="btn btn-primary" onclick="commitToGitHub()">
+                📤 Commit lên GitHub
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      // Update functions
+      function updateMenuItem(idx, field, imageIdx, value) {
+        if (field === "images") {
+          if (!menuData.menu[idx].images) {
+            menuData.menu[idx].images = [];
+          }
+          if (imageIdx !== null) {
+            menuData.menu[idx].images[imageIdx] = value;
+          }
+        } else {
+          menuData.menu[idx][field] = value;
+        }
+      }
+
+      function updateMenuItemAndPreview(idx, imageIdx, value) {
+        updateMenuItem(idx, "images", imageIdx, value);
+
+        // Update preview
+        const previewContainer = document.getElementById(
+          `preview-container-${idx}-${imageIdx}`
+        );
+        if (previewContainer && value) {
+          const previewUrl = value.startsWith("http") ? value : `/${value}`;
+          previewContainer.innerHTML = `<img src="${previewUrl}" alt="Preview" class="image-preview" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'image-preview-placeholder\\'>Không tải được ảnh</div>'">`;
+
+          // Update name input
+          const nameInput = document.getElementById(
+            `image-name-${idx}-${imageIdx}`
+          );
+          if (nameInput) {
+            const imageName = value
+              .replace("images/", "")
+              .replace(/\.[^/.]+$/, "");
+            nameInput.value = imageName;
+          }
+        } else if (previewContainer && !value) {
+          previewContainer.innerHTML = `<div class="image-preview-placeholder">Chưa có ảnh</div>`;
+        }
+      }
+
+      function addImage(menuIdx) {
+        if (!menuData.menu[menuIdx].images) {
+          menuData.menu[menuIdx].images = [];
+        }
+        menuData.menu[menuIdx].images.push("");
+        renderEditor();
+      }
+
+      function removeImage(menuIdx, imageIdx) {
+        menuData.menu[menuIdx].images.splice(imageIdx, 1);
+        renderEditor();
+      }
+
+      function addMenuItem() {
+        menuData.menu.push({
+          name: "",
+          half: "",
+          full: "",
+        });
+        renderEditor();
+      }
+
+      function removeMenuItem(idx) {
+        if (confirm("Bạn có chắc muốn xóa món này?")) {
+          menuData.menu.splice(idx, 1);
+          renderEditor();
+        }
+      }
+
+      function updateExtraItem(idx, field, value) {
+        menuData.extras[idx][field] = value;
+      }
+
+      function addExtraItem() {
+        menuData.extras.push({ name: "", price: "" });
+        renderEditor();
+      }
+
+      function removeExtraItem(idx) {
+        if (confirm("Bạn có chắc muốn xóa đồ thêm này?")) {
+          menuData.extras.splice(idx, 1);
+          renderEditor();
+        }
+      }
+
+      function updateBeverageItem(idx, field, value) {
+        menuData.beverages[idx][field] = value;
+      }
+
+      function addBeverageItem() {
+        menuData.beverages.push({ name: "", price: "" });
+        renderEditor();
+      }
+
+      function removeBeverageItem(idx) {
+        if (confirm("Bạn có chắc muốn xóa đồ uống này?")) {
+          menuData.beverages.splice(idx, 1);
+          renderEditor();
+        }
+      }
+
+      function updateNoteItem(idx, value) {
+        menuData.notes[idx] = value;
+      }
+
+      function addNoteItem() {
+        menuData.notes.push("");
+        renderEditor();
+      }
+
+      function removeNoteItem(idx) {
+        if (confirm("Bạn có chắc muốn xóa note này?")) {
+          menuData.notes.splice(idx, 1);
+          renderEditor();
+        }
+      }
+
+      // Save functions
+      function saveMenu() {
+        const json = JSON.stringify(menuData, null, 2);
+        const blob = new Blob([json], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "menu.json";
+        a.click();
+        URL.revokeObjectURL(url);
+        showStatus("File JSON đã được tải xuống!", "success");
+      }
+
+      function previewJSON() {
+        const json = JSON.stringify(menuData, null, 2);
+        const newWindow = window.open();
+        newWindow.document.write(
+          `<pre style="padding: 1rem; font-family: monospace;">${escapeHtml(
+            json
+          )}</pre>`
+        );
+      }
+
+      async function commitToGitHub() {
+        const token = document.getElementById("github-token").value.trim();
+        const repo =
+          document.getElementById("github-repo").value.trim() ||
+          "EagleVee/munchonlunch-menu";
+        const branch =
+          document.getElementById("github-branch").value.trim() || "main";
+        const message =
+          document.getElementById("github-message").value.trim() ||
+          "Update menu";
+
+        if (!token) {
+          showStatus("Vui lòng điền GitHub token!", "error");
+          return;
+        }
+
+        try {
+          showStatus("Đang commit lên GitHub...", "success");
+
+          // Get current file SHA (if exists)
+          const getFileUrl = `https://api.github.com/repos/${repo}/contents/data/menu.json?ref=${branch}`;
+          let sha = null;
+
+          try {
+            const fileRes = await fetch(getFileUrl, {
+              headers: {
+                Authorization: `token ${token}`,
+                Accept: "application/vnd.github.v3+json",
+              },
+            });
+
+            if (fileRes.ok) {
+              const fileData = await fileRes.json();
+              sha = fileData.sha;
+            }
+          } catch (e) {
+            // File might not exist, that's okay
+          }
+
+          // Prepare content
+          const json = JSON.stringify(menuData, null, 2);
+          const content = btoa(unescape(encodeURIComponent(json)));
+
+          // Commit
+          const commitUrl = `https://api.github.com/repos/${repo}/contents/data/menu.json`;
+          const commitRes = await fetch(commitUrl, {
+            method: "PUT",
+            headers: {
+              Authorization: `token ${token}`,
+              Accept: "application/vnd.github.v3+json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message: message,
+              content: content,
+              branch: branch,
+              ...(sha && { sha: sha }),
+            }),
+          });
+
+          if (!commitRes.ok) {
+            const error = await commitRes.json();
+            throw new Error(error.message || "Lỗi khi commit");
+          }
+
+          showStatus("✅ Commit lên GitHub thành công!", "success");
+
+          // Clear token field for security
+          document.getElementById("github-token").value = "";
+        } catch (error) {
+          showStatus("❌ Lỗi: " + error.message, "error");
+          console.error(error);
+        }
+      }
+
+      function showStatus(message, type) {
+        const statusEl = document.getElementById("status-message");
+        statusEl.textContent = message;
+        statusEl.className = `status-message show ${type}`;
+        setTimeout(() => {
+          statusEl.classList.remove("show");
+        }, 5000);
+      }
+
+      function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Image upload functions
+      let githubCredentials = {
+        token: null,
+        repo: null,
+        branch: "main",
+      };
+
+      function getGitHubCredentials() {
+        const token = document.getElementById("github-token")?.value.trim();
+        const repo =
+          document.getElementById("github-repo")?.value.trim() ||
+          "EagleVee/munchonlunch-menu";
+        const branch =
+          document.getElementById("github-branch")?.value.trim() || "main";
+
+        if (!token) {
+          return null;
+        }
+
+        return { token, repo, branch };
+      }
+
+      async function checkImageExists(repo, branch, imagePath, token) {
+        try {
+          const url = `https://api.github.com/repos/${repo}/contents/${imagePath}?ref=${branch}`;
+          const res = await fetch(url, {
+            headers: {
+              Authorization: `token ${token}`,
+              Accept: "application/vnd.github.v3+json",
+            },
+          });
+          return res.ok;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      async function listImagesInRepo(repo, branch, token) {
+        try {
+          const url = `https://api.github.com/repos/${repo}/contents/images?ref=${branch}`;
+          const res = await fetch(url, {
+            headers: {
+              Authorization: `token ${token}`,
+              Accept: "application/vnd.github.v3+json",
+            },
+          });
+
+          if (!res.ok) {
+            return [];
+          }
+
+          const files = await res.json();
+          return files.filter((f) => f.type === "file").map((f) => f.name);
+        } catch (e) {
+          return [];
+        }
+      }
+
+      async function uploadImageToGitHub(
+        file,
+        menuIdx,
+        imageIdx,
+        customFileName = null
+      ) {
+        const creds = getGitHubCredentials();
+        if (!creds) {
+          showStatus(
+            "Vui lòng điền GitHub token và repo trước khi upload ảnh!",
+            "error"
+          );
+          return;
+        }
+
+        const statusEl = document.getElementById(
+          `upload-status-${menuIdx}-${imageIdx}`
+        );
+        statusEl.textContent = "Đang kiểm tra duplicate...";
+        statusEl.className = "upload-status uploading";
+
+        try {
+          // Use custom filename or generate one
+          let fileName;
+          if (customFileName) {
+            fileName = customFileName;
+          } else {
+            const timestamp = Date.now();
+            const originalName = file.name;
+            const ext = originalName.split(".").pop().toLowerCase();
+            const baseName = originalName
+              .replace(/\.[^/.]+$/, "")
+              .replace(/[^a-z0-9]/gi, "_")
+              .toLowerCase();
+            fileName = `${baseName}_${timestamp}.${ext}`;
+          }
+          const imagePath = `images/${fileName}`;
+
+          // Check if file with same name exists
+          const existingFiles = await listImagesInRepo(
+            creds.repo,
+            creds.branch,
+            creds.token
+          );
+          if (existingFiles.includes(fileName)) {
+            statusEl.textContent =
+              "⚠️ File đã tồn tại, đang kiểm tra nội dung...";
+
+            // Check if content is the same by comparing file size (simple check)
+            // For better duplicate detection, we could compare SHA or content hash
+            const existingUrl = `https://api.github.com/repos/${creds.repo}/contents/${imagePath}?ref=${creds.branch}`;
+            const existingRes = await fetch(existingUrl, {
+              headers: {
+                Authorization: `token ${creds.token}`,
+                Accept: "application/vnd.github.v3+json",
+              },
+            });
+
+            if (existingRes.ok) {
+              const existingData = await existingRes.json();
+              // Use existing file
+              updateMenuItem(menuIdx, "images", imageIdx, imagePath);
+              statusEl.textContent = "✅ Sử dụng ảnh đã có";
+              statusEl.className = "upload-status success";
+              renderEditor(); // Refresh to show preview
+              return;
+            }
+          }
+
+          // Read file as base64
+          statusEl.textContent = "Đang upload ảnh...";
+          const reader = new FileReader();
+
+          reader.onload = async function (e) {
+            try {
+              const base64Content = e.target.result.split(",")[1]; // Remove data:image/...;base64, prefix
+
+              // Upload to GitHub
+              const uploadUrl = `https://api.github.com/repos/${creds.repo}/contents/${imagePath}`;
+              const uploadRes = await fetch(uploadUrl, {
+                method: "PUT",
+                headers: {
+                  Authorization: `token ${creds.token}`,
+                  Accept: "application/vnd.github.v3+json",
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  message: `Add image: ${fileName}`,
+                  content: base64Content,
+                  branch: creds.branch,
+                }),
+              });
+
+              if (!uploadRes.ok) {
+                const error = await uploadRes.json();
+                throw new Error(error.message || "Lỗi khi upload ảnh");
+              }
+
+              // Update menu item with new image path
+              updateMenuItem(menuIdx, "images", imageIdx, imagePath);
+              statusEl.textContent = "✅ Upload thành công!";
+              statusEl.className = "upload-status success";
+
+              // Refresh editor to show preview
+              renderEditor();
+            } catch (error) {
+              statusEl.textContent = "❌ Lỗi: " + error.message;
+              statusEl.className = "upload-status error";
+              console.error(error);
+            }
+          };
+
+          reader.onerror = function () {
+            statusEl.textContent = "❌ Lỗi khi đọc file";
+            statusEl.className = "upload-status error";
+          };
+
+          reader.readAsDataURL(file);
+        } catch (error) {
+          statusEl.textContent = "❌ Lỗi: " + error.message;
+          statusEl.className = "upload-status error";
+          console.error(error);
+        }
+      }
+
+      // Store selected files temporarily
+      const selectedFiles = {};
+
+      async function handleImageSelect(menuIdx, imageIdx, fileInput) {
+        const file = fileInput.files[0];
+        if (!file) return;
+
+        // Validate file type
+        if (!file.type.startsWith("image/")) {
+          showStatus("Vui lòng chọn file ảnh!", "error");
+          fileInput.value = "";
+          return;
+        }
+
+        // Validate file size (max 10MB)
+        if (file.size > 10 * 1024 * 1024) {
+          showStatus("File ảnh quá lớn! Tối đa 10MB", "error");
+          fileInput.value = "";
+          return;
+        }
+
+        // Store file for later upload
+        const key = `${menuIdx}-${imageIdx}`;
+        selectedFiles[key] = file;
+
+        // Show preview immediately
+        const previewContainer = document.getElementById(
+          `preview-container-${menuIdx}-${imageIdx}`
+        );
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewContainer.innerHTML = `<img src="${e.target.result}" alt="Preview" class="image-preview">`;
+        };
+        reader.readAsDataURL(file);
+
+        // Show upload button
+        const uploadBtn = document.getElementById(
+          `upload-btn-${menuIdx}-${imageIdx}`
+        );
+        uploadBtn.style.display = "inline-block";
+
+        // Auto-fill image name if empty
+        const nameInput = document.getElementById(
+          `image-name-${menuIdx}-${imageIdx}`
+        );
+        if (!nameInput.value) {
+          const originalName = file.name.replace(/\.[^/.]+$/, "");
+          nameInput.value = originalName
+            .replace(/[^a-z0-9]/gi, "_")
+            .toLowerCase();
+        }
+
+        // Update status
+        const statusEl = document.getElementById(
+          `upload-status-${menuIdx}-${imageIdx}`
+        );
+        statusEl.textContent =
+          "✅ Ảnh đã được chọn. Nhập tên file và click Upload.";
+        statusEl.className = "upload-status success";
+      }
+
+      async function uploadSelectedImage(menuIdx, imageIdx) {
+        const key = `${menuIdx}-${imageIdx}`;
+        const file = selectedFiles[key];
+
+        if (!file) {
+          showStatus("Vui lòng chọn ảnh trước!", "error");
+          return;
+        }
+
+        // Get image name from input
+        const nameInput = document.getElementById(
+          `image-name-${menuIdx}-${imageIdx}`
+        );
+        const imageName = nameInput.value.trim();
+
+        if (!imageName) {
+          showStatus("Vui lòng nhập tên file!", "error");
+          nameInput.focus();
+          return;
+        }
+
+        // Get file extension from original file
+        const ext = file.name.split(".").pop().toLowerCase();
+        const fileName = `${imageName}.${ext}`;
+
+        // Upload with custom name
+        await uploadImageToGitHub(file, menuIdx, imageIdx, fileName);
+
+        // Clean up
+        delete selectedFiles[key];
+        const fileInput = document.getElementById(
+          `file-input-${menuIdx}-${imageIdx}`
+        );
+        fileInput.value = "";
+        const uploadBtn = document.getElementById(
+          `upload-btn-${menuIdx}-${imageIdx}`
+        );
+        uploadBtn.style.display = "none";
+      }
+
+      // Load menu on page load
+      loadMenu();
+    </script>
+  </body>
+</html>

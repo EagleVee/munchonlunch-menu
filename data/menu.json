@@ -1,78 +1,38 @@
 {
   "menu": [
     {
-      "name": "Xúc xích",
-      "description": "~302 calo",
-      "half": "20k",
-      "full": "32k",
-      "images": [
-        "images/xuc_xich_1.jpg"
-      ]
-    },
-    {
-      "name": "Xúc xích thịt hun khói",
-      "description": "~366 calo",
-      "half": "25k",
-      "full": "40k",
-      "images": [
-        "images/thit_hun_khoi_1.jpg"
-      ]
-    },
-    {
-      "name": "Xúc xích thanh cua",
-      "description": "~349 calo",
-      "half": "25k",
-      "full": "40k"
-    },
-    {
       "name": "Gà xá xíu",
-      "description": "~464 calo, má đùi gà xá xíu mềm mọng - Best seller",
-      "half": "25k",
-      "full": "40k",
+      "description": "Má đùi gà xá xíu mềm mọng - Best seller",
+      "half": "28k",
+      "full": "45k",
       "images": [
         "images/ga_xa_xiu_2.jpeg",
         "images/ga_xa_xiu_1.jpg"
       ]
     },
     {
-      "name": "Gà xá xíu healthy",
-      "description": "~398 calo, ức gà xá xíu juicy, bánh gối nguyên cám, nhiều rau hơn, sốt ít calo",
-      "half": "30k",
-      "full": "50k",
-      "images": []
+      "name": "Tôm hấp xả",
+      "half": "32k",
+      "full": "55k"
     },
     {
-      "name": "Trứng creamy",
-      "description": "~280 calo, X2 trứng với kết cấu creamy mềm mịn",
-      "half": "15k",
-      "full": "25k",
-      "images": [
-        "images/trung_creamy_1.jpeg"
-      ]
-    },
-    {
-      "name": "Xúc xích + thịt hun khói + thanh cua",
-      "description": "~413 calo - Best seller",
+      "name": "Bò Bulgogi",
       "half": "30k",
-      "full": "48k",
-      "bold": true,
-      "images": [
-        "images/full_topping_1.jpg"
-      ]
+      "full": "50k"
     }
   ],
   "extras": [
     {
-      "name": "Xúc xích",
-      "price": "+5k"
+      "name": "Gà",
+      "price": "+10k"
     },
     {
-      "name": "Thịt hun khói",
-      "price": "+8k"
+      "name": "Tôm",
+      "price": "+15k"
     },
     {
-      "name": "Thanh cua",
-      "price": "+8k"
+      "name": "Bò",
+      "price": "+10k"
     },
     {
       "name": "Phô mai lát",
@@ -80,6 +40,11 @@
     }
   ],
   "beverages": [
+    {
+      "name": "Matcha Latte",
+      "description": "Giá theo chai, một chai 2-3 serves",
+      "price": "60k"
+    },
     {
       "name": "Sữa đậu nành",
       "price": "15k"
